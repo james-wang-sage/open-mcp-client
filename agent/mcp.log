@@ -1,0 +1,747 @@
+2025-03-20 14:21:51,986 - mcp - INFO - MCP Server Selection:
+2025-03-20 14:21:51,986 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  },
+  "Help Search": {
+    "command": "java",
+    "args": [
+      "-jar",
+      "/Users/jameswang/projects/mcp.servers/mcp.server.search/target/mcp-weather-stdio-server-0.0.2-SNAPSHOT.jar"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 14:21:51,986 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 14:21:56,165 - mcp - INFO - MCP Performance: {
+  "timestamp": "2025-03-20T14:21:56.165733",
+  "server_name": "agent",
+  "operation": "chat_node",
+  "duration_ms": 4179.250001907349,
+  "success": true
+}
+2025-03-20 14:23:34,610 - mcp - INFO - MCP Server Selection:
+2025-03-20 14:23:34,610 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  },
+  "BvA": {
+    "command": "java",
+    "args": [
+      "-jar",
+      "/Users/jameswang/projects/mcp.servers/mcp.server.bva/target/mcp-weather-stdio-server-0.0.1-SNAPSHOT.jar"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 14:23:34,610 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 14:33:05,747 - mcp - INFO - MCP Server Selection:
+2025-03-20 14:33:05,747 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  },
+  "BvA": {
+    "command": "java",
+    "args": [
+      "-jar",
+      "/Users/jameswang/projects/mcp.servers/mcp.server.bva/target/mcp-weather-stdio-server-0.0.2-SNAPSHOT.jar"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 14:33:05,747 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 14:33:13,439 - mcp - INFO - MCP Performance: {
+  "timestamp": "2025-03-20T14:33:13.439166",
+  "server_name": "agent",
+  "operation": "chat_node",
+  "duration_ms": 7692.123889923096,
+  "success": true
+}
+2025-03-20 14:35:55,278 - mcp - INFO - MCP Server Selection:
+2025-03-20 14:35:55,279 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  },
+  "BvA": {
+    "command": "java",
+    "args": [
+      "-jar",
+      "/Users/jameswang/projects/mcp.servers/mcp.server.bva/target/mcp-weather-stdio-server-0.0.2-SNAPSHOT.jar"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 14:35:55,279 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 14:36:00,110 - mcp - ERROR - MCP Error: {
+  "timestamp": "2025-03-20T14:36:00.110741",
+  "server_name": "agent",
+  "error_type": "BadRequestError",
+  "error_message": "Error code: 400 - {'error': {'message': \"Invalid 'messages[2].content': string too long. Expected a string with maximum length 1048576, but got a string with length 1228004 instead.\", 'type': 'invalid_request_error', 'param': 'messages[2].content', 'code': 'string_above_max_length'}}",
+  "stack_trace": null
+}
+2025-03-20 14:38:03,663 - mcp - INFO - MCP Server Selection:
+2025-03-20 14:38:03,663 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  },
+  "BvA": {
+    "command": "java",
+    "args": [
+      "-jar",
+      "/Users/jameswang/projects/mcp.servers/mcp.server.bva/target/mcp-weather-stdio-server-0.0.2-SNAPSHOT.jar"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 14:38:03,663 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 14:38:07,550 - mcp - ERROR - MCP Error: {
+  "timestamp": "2025-03-20T14:38:07.550734",
+  "server_name": "agent",
+  "error_type": "BadRequestError",
+  "error_message": "Error code: 400 - {'error': {'message': \"Invalid 'messages[2].content': string too long. Expected a string with maximum length 1048576, but got a string with length 1228004 instead.\", 'type': 'invalid_request_error', 'param': 'messages[2].content', 'code': 'string_above_max_length'}}",
+  "stack_trace": null
+}
+2025-03-20 14:40:03,503 - mcp - INFO - MCP Server Selection:
+2025-03-20 14:40:03,503 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  },
+  "BvA": {
+    "command": "java",
+    "args": [
+      "-jar",
+      "/Users/jameswang/projects/mcp.servers/mcp.server.bva/target/mcp-weather-stdio-server-0.0.2-SNAPSHOT.jar"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 14:40:03,504 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 14:40:08,417 - mcp - INFO - MCP Performance: {
+  "timestamp": "2025-03-20T14:40:08.417480",
+  "server_name": "agent",
+  "operation": "chat_node",
+  "duration_ms": 4913.84220123291,
+  "success": true
+}
+2025-03-20 14:45:26,877 - mcp - INFO - MCP Server Selection:
+2025-03-20 14:45:26,878 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  },
+  "Help Search": {
+    "command": "java",
+    "args": [
+      "-jar",
+      "/Users/jameswang/projects/mcp.servers/mcp.server.search/target/mcp-weather-stdio-server-0.0.2-SNAPSHOT.jar"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 14:45:26,878 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 14:45:30,722 - mcp - INFO - MCP Performance: {
+  "timestamp": "2025-03-20T14:45:30.722914",
+  "server_name": "agent",
+  "operation": "chat_node",
+  "duration_ms": 3845.0260162353516,
+  "success": true
+}
+2025-03-20 14:45:40,729 - mcp - INFO - MCP Server Selection:
+2025-03-20 14:45:40,730 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  },
+  "Help Search": {
+    "command": "java",
+    "args": [
+      "-jar",
+      "/Users/jameswang/projects/mcp.servers/mcp.server.search/target/mcp-weather-stdio-server-0.0.2-SNAPSHOT.jar"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 14:45:40,730 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 14:45:43,672 - mcp - INFO - MCP Performance: {
+  "timestamp": "2025-03-20T14:45:43.672863",
+  "server_name": "agent",
+  "operation": "chat_node",
+  "duration_ms": 2942.878007888794,
+  "success": true
+}
+2025-03-20 14:45:55,745 - mcp - INFO - MCP Server Selection:
+2025-03-20 14:45:55,746 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  },
+  "Help Search": {
+    "command": "java",
+    "args": [
+      "-jar",
+      "/Users/jameswang/projects/mcp.servers/mcp.server.search/target/mcp-weather-stdio-server-0.0.2-SNAPSHOT.jar"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 14:45:55,746 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 14:45:58,656 - mcp - INFO - MCP Performance: {
+  "timestamp": "2025-03-20T14:45:58.656703",
+  "server_name": "agent",
+  "operation": "chat_node",
+  "duration_ms": 2910.8850955963135,
+  "success": true
+}
+2025-03-20 14:54:14,380 - mcp - INFO - MCP Server Selection:
+2025-03-20 14:54:14,381 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  },
+  "Tavily": {
+    "command": "npx",
+    "args": [
+      "/Users/jameswang/projects/mcp.tavily/build/index.js"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 14:54:14,381 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 14:54:25,879 - mcp - INFO - MCP Performance: {
+  "timestamp": "2025-03-20T14:54:25.879510",
+  "server_name": "agent",
+  "operation": "chat_node",
+  "duration_ms": 11498.684883117676,
+  "success": true
+}
+2025-03-20 14:58:43,389 - mcp - INFO - MCP Server Selection:
+2025-03-20 14:58:43,390 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 14:58:43,390 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 14:58:44,919 - mcp - INFO - MCP Performance: {
+  "timestamp": "2025-03-20T14:58:44.919281",
+  "server_name": "agent",
+  "operation": "chat_node",
+  "duration_ms": 1530.0042629241943,
+  "success": true
+}
+2025-03-20 14:59:16,442 - mcp - INFO - MCP Server Selection:
+2025-03-20 14:59:16,442 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 14:59:16,442 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 14:59:18,232 - mcp - INFO - MCP Performance: {
+  "timestamp": "2025-03-20T14:59:18.232361",
+  "server_name": "agent",
+  "operation": "chat_node",
+  "duration_ms": 1790.2801036834717,
+  "success": true
+}
+2025-03-20 14:59:34,462 - mcp - INFO - MCP Server Selection:
+2025-03-20 14:59:34,462 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  },
+  "Help Search": {
+    "command": "java",
+    "args": [
+      "-jar",
+      "/Users/jameswang/projects/mcp.servers/mcp.server.search/target/mcp-weather-stdio-server-0.0.2-SNAPSHOT.jar"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 14:59:34,462 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 14:59:38,359 - mcp - INFO - MCP Performance: {
+  "timestamp": "2025-03-20T14:59:38.359311",
+  "server_name": "agent",
+  "operation": "chat_node",
+  "duration_ms": 3896.601915359497,
+  "success": true
+}
+2025-03-20 15:02:45,673 - mcp - INFO - MCP Server Selection:
+2025-03-20 15:02:45,673 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  },
+  "Help Search": {
+    "command": "java",
+    "args": [
+      "-jar",
+      "/Users/jameswang/projects/mcp.servers/mcp.server.search/target/mcp-weather-stdio-server-0.0.2-SNAPSHOT.jar"
+    ],
+    "transport": "stdio"
+  },
+  "BvA": {
+    "command": "java",
+    "args": [
+      "-jar",
+      "/Users/jameswang/projects/mcp.servers/mcp.server.bva/target/mcp-weather-stdio-server-0.0.2-SNAPSHOT.jar"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 15:02:45,673 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 15:02:51,358 - mcp - INFO - MCP Performance: {
+  "timestamp": "2025-03-20T15:02:51.358852",
+  "server_name": "agent",
+  "operation": "chat_node",
+  "duration_ms": 5685.199022293091,
+  "success": true
+}
+2025-03-20 15:03:23,210 - mcp - INFO - MCP Server Selection:
+2025-03-20 15:03:23,210 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  },
+  "Help Search": {
+    "command": "java",
+    "args": [
+      "-jar",
+      "/Users/jameswang/projects/mcp.servers/mcp.server.search/target/mcp-weather-stdio-server-0.0.2-SNAPSHOT.jar"
+    ],
+    "transport": "stdio"
+  },
+  "BvA": {
+    "command": "java",
+    "args": [
+      "-jar",
+      "/Users/jameswang/projects/mcp.servers/mcp.server.bva/target/mcp-weather-stdio-server-0.0.2-SNAPSHOT.jar"
+    ],
+    "transport": "stdio"
+  },
+  "Tavily": {
+    "command": "npx",
+    "args": [
+      "/Users/jameswang/projects/mcp.tavily/build/index.js"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 15:03:23,210 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 15:03:39,542 - mcp - INFO - MCP Performance: {
+  "timestamp": "2025-03-20T15:03:39.542585",
+  "server_name": "agent",
+  "operation": "chat_node",
+  "duration_ms": 16331.952810287476,
+  "success": true
+}
+2025-03-20 15:35:35,484 - mcp - INFO - MCP Server Selection:
+2025-03-20 15:35:35,485 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  },
+  "Time": {
+    "url": "https://router.mcp.so/sse/p6ziw1m8fiiwvj",
+    "transport": "sse"
+  }
+}
+2025-03-20 15:35:35,485 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 15:35:38,144 - mcp.client.sse - INFO - Connecting to SSE endpoint: https://router.mcp.so/sse/p6ziw1m8fiiwvj
+2025-03-20 15:35:39,244 - mcp.client.sse - DEBUG - SSE connection established
+2025-03-20 15:35:39,244 - mcp.client.sse - DEBUG - Received SSE event: endpoint
+2025-03-20 15:35:39,244 - mcp.client.sse - INFO - Received endpoint URL: https://router.mcp.so/messages?sessionid=e53fca9b-4336-4fdf-b0ae-ab86cd716c43
+2025-03-20 15:35:39,244 - mcp.client.sse - INFO - Starting post writer with endpoint URL: https://router.mcp.so/messages?sessionid=e53fca9b-4336-4fdf-b0ae-ab86cd716c43
+2025-03-20 15:35:39,245 - mcp.client.sse - DEBUG - Sending client message: root=JSONRPCRequest(method='initialize', params={'protocolVersion': '2024-11-05', 'capabilities': {'sampling': {}, 'roots': {'listChanged': True}}, 'clientInfo': {'name': 'mcp', 'version': '0.1.0'}}, jsonrpc='2.0', id=0)
+2025-03-20 15:35:40,128 - mcp.client.sse - DEBUG - Client message sent successfully: 202
+2025-03-20 15:35:40,128 - mcp.client.sse - DEBUG - Received SSE event: message
+2025-03-20 15:35:40,129 - mcp.client.sse - DEBUG - Received server message: root=JSONRPCResponse(jsonrpc='2.0', id=0, result={'capabilities': {'experimental': {}, 'tools': {'listChanged': False}}, 'protocolVersion': '2024-11-05', 'serverInfo': {'name': 'mcp-time', 'version': '1.4.1'}})
+2025-03-20 15:35:40,129 - mcp.client.sse - DEBUG - Sending client message: root=JSONRPCNotification(method='notifications/initialized', jsonrpc='2.0', params=None)
+2025-03-20 15:35:40,392 - mcp.client.sse - DEBUG - Client message sent successfully: 202
+2025-03-20 15:35:40,393 - mcp.client.sse - DEBUG - Sending client message: root=JSONRPCRequest(method='tools/list', params=None, jsonrpc='2.0', id=1)
+2025-03-20 15:35:40,815 - mcp.client.sse - DEBUG - Client message sent successfully: 202
+2025-03-20 15:35:40,816 - mcp.client.sse - DEBUG - Received SSE event: message
+2025-03-20 15:35:40,816 - mcp.client.sse - DEBUG - Received server message: root=JSONRPCResponse(jsonrpc='2.0', id=1, result={'tools': [{'description': 'Get current time in a specific timezones', 'inputSchema': {'properties': {'timezone': {'description': "IANA timezone name (e.g., 'America/New_York', 'Europe/London'). Use 'UTC' as local timezone if no timezone provided by the user.", 'type': 'string'}}, 'required': ['timezone'], 'type': 'object'}, 'name': 'get_current_time'}, {'description': 'Convert time between timezones', 'inputSchema': {'properties': {'source_timezone': {'description': "Source IANA timezone name (e.g., 'America/New_York', 'Europe/London'). Use 'UTC' as local timezone if no source timezone provided by the user.", 'type': 'string'}, 'target_timezone': {'description': "Target IANA timezone name (e.g., 'Asia/Tokyo', 'America/San_Francisco'). Use 'UTC' as local timezone if no target timezone provided by the user.", 'type': 'string'}, 'time': {'description': 'Time to convert in 24-hour format (HH:MM)', 'type': 'string'}}, 'required': ['source_timezone', 'time', 'target_timezone'], 'type': 'object'}, 'name': 'convert_time'}]})
+2025-03-20 15:35:42,039 - mcp.client.sse - DEBUG - Sending client message: root=JSONRPCRequest(method='tools/call', params={'name': 'get_current_time', 'arguments': {'timezone': 'America/Los_Angeles'}}, jsonrpc='2.0', id=2)
+2025-03-20 15:35:42,480 - mcp.client.sse - DEBUG - Client message sent successfully: 202
+2025-03-20 15:35:42,481 - mcp.client.sse - DEBUG - Received SSE event: message
+2025-03-20 15:35:42,481 - mcp.client.sse - DEBUG - Received server message: root=JSONRPCResponse(jsonrpc='2.0', id=2, result={'content': [{'text': '{\n  "timezone": "America/Los_Angeles",\n  "datetime": "2025-03-20T15:35:42-07:00",\n  "is_dst": true\n}', 'type': 'text'}], 'isError': False})
+2025-03-20 15:35:43,094 - mcp - INFO - MCP Performance: {
+  "timestamp": "2025-03-20T15:35:43.094418",
+  "server_name": "agent",
+  "operation": "chat_node",
+  "duration_ms": 7609.54213142395,
+  "success": true
+}
+2025-03-20 15:35:54,009 - mcp - INFO - MCP Server Selection:
+2025-03-20 15:35:54,009 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 15:35:54,009 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 15:35:56,638 - mcp - INFO - MCP Performance: {
+  "timestamp": "2025-03-20T15:35:56.638071",
+  "server_name": "agent",
+  "operation": "chat_node",
+  "duration_ms": 2628.431797027588,
+  "success": true
+}
+2025-03-20 15:39:43,079 - mcp - INFO - MCP Server Selection:
+2025-03-20 15:39:43,079 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 15:39:43,079 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 15:39:48,596 - mcp - INFO - MCP Performance: {
+  "timestamp": "2025-03-20T15:39:48.596707",
+  "server_name": "agent",
+  "operation": "chat_node",
+  "duration_ms": 5517.298936843872,
+  "success": true
+}
+2025-03-20 15:40:29,956 - mcp - INFO - MCP Server Selection:
+2025-03-20 15:40:29,956 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  }
+}
+2025-03-20 15:40:29,956 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 15:40:31,784 - mcp - INFO - MCP Performance: {
+  "timestamp": "2025-03-20T15:40:31.784333",
+  "server_name": "agent",
+  "operation": "chat_node",
+  "duration_ms": 1828.2949924468994,
+  "success": true
+}
+2025-03-20 15:40:52,484 - mcp - INFO - MCP Server Selection:
+2025-03-20 15:40:52,485 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  },
+  "Time": {
+    "url": "https://router.mcp.so/sse/p6ziw1m8fiiwvj",
+    "transport": "sse"
+  }
+}
+2025-03-20 15:40:52,485 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 15:40:53,184 - mcp.client.sse - INFO - Connecting to SSE endpoint: https://router.mcp.so/sse/p6ziw1m8fiiwvj
+2025-03-20 15:40:53,653 - mcp.client.sse - DEBUG - SSE connection established
+2025-03-20 15:40:53,654 - mcp.client.sse - DEBUG - Received SSE event: endpoint
+2025-03-20 15:40:53,654 - mcp.client.sse - INFO - Received endpoint URL: https://router.mcp.so/messages?sessionid=84d9c649-a81b-4ece-9688-d389d5651fb5
+2025-03-20 15:40:53,654 - mcp.client.sse - INFO - Starting post writer with endpoint URL: https://router.mcp.so/messages?sessionid=84d9c649-a81b-4ece-9688-d389d5651fb5
+2025-03-20 15:40:53,655 - mcp.client.sse - DEBUG - Sending client message: root=JSONRPCRequest(method='initialize', params={'protocolVersion': '2024-11-05', 'capabilities': {'sampling': {}, 'roots': {'listChanged': True}}, 'clientInfo': {'name': 'mcp', 'version': '0.1.0'}}, jsonrpc='2.0', id=0)
+2025-03-20 15:40:54,485 - mcp.client.sse - DEBUG - Received SSE event: message
+2025-03-20 15:40:54,486 - mcp.client.sse - DEBUG - Received server message: root=JSONRPCResponse(jsonrpc='2.0', id=0, result={'capabilities': {'experimental': {}, 'tools': {'listChanged': False}}, 'protocolVersion': '2024-11-05', 'serverInfo': {'name': 'mcp-time', 'version': '1.4.1'}})
+2025-03-20 15:40:54,488 - mcp.client.sse - DEBUG - Client message sent successfully: 202
+2025-03-20 15:40:54,488 - mcp.client.sse - DEBUG - Sending client message: root=JSONRPCNotification(method='notifications/initialized', jsonrpc='2.0', params=None)
+2025-03-20 15:40:54,766 - mcp.client.sse - DEBUG - Client message sent successfully: 202
+2025-03-20 15:40:54,766 - mcp.client.sse - DEBUG - Sending client message: root=JSONRPCRequest(method='tools/list', params=None, jsonrpc='2.0', id=1)
+2025-03-20 15:40:55,070 - mcp.client.sse - DEBUG - Received SSE event: message
+2025-03-20 15:40:55,070 - mcp.client.sse - DEBUG - Received server message: root=JSONRPCResponse(jsonrpc='2.0', id=1, result={'tools': [{'description': 'Get current time in a specific timezones', 'inputSchema': {'properties': {'timezone': {'description': "IANA timezone name (e.g., 'America/New_York', 'Europe/London'). Use 'UTC' as local timezone if no timezone provided by the user.", 'type': 'string'}}, 'required': ['timezone'], 'type': 'object'}, 'name': 'get_current_time'}, {'description': 'Convert time between timezones', 'inputSchema': {'properties': {'source_timezone': {'description': "Source IANA timezone name (e.g., 'America/New_York', 'Europe/London'). Use 'UTC' as local timezone if no source timezone provided by the user.", 'type': 'string'}, 'target_timezone': {'description': "Target IANA timezone name (e.g., 'Asia/Tokyo', 'America/San_Francisco'). Use 'UTC' as local timezone if no target timezone provided by the user.", 'type': 'string'}, 'time': {'description': 'Time to convert in 24-hour format (HH:MM)', 'type': 'string'}}, 'required': ['source_timezone', 'time', 'target_timezone'], 'type': 'object'}, 'name': 'convert_time'}]})
+2025-03-20 15:40:55,071 - mcp.client.sse - DEBUG - Client message sent successfully: 202
+2025-03-20 15:40:55,498 - mcp - ERROR - MCP Error: {
+  "timestamp": "2025-03-20T15:40:55.498179",
+  "server_name": "agent",
+  "error_type": "BadRequestError",
+  "error_message": "Error code: 400 - {'error': {'message': \"Invalid parameter: messages with role 'tool' must be a response to a preceeding message with 'tool_calls'.\", 'type': 'invalid_request_error', 'param': 'messages.[0].role', 'code': None}}",
+  "stack_trace": null
+}
+2025-03-20 15:41:16,010 - mcp - INFO - MCP Server Selection:
+2025-03-20 15:41:16,010 - mcp - INFO - Enabled servers: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio"
+  },
+  "Time": {
+    "url": "https://router.mcp.so/sse/p6ziw1m8fiiwvj",
+    "transport": "sse"
+  }
+}
+2025-03-20 15:41:16,010 - mcp - INFO - Default config: {
+  "math": {
+    "command": "python",
+    "args": [
+      "/Volumes/Case_Sensitive/projects/open-mcp-client/agent/./sample_agent/../math_server.py"
+    ],
+    "transport": "stdio",
+    "enabled": true
+  }
+}
+2025-03-20 15:41:16,741 - mcp.client.sse - INFO - Connecting to SSE endpoint: https://router.mcp.so/sse/p6ziw1m8fiiwvj
+2025-03-20 15:41:17,484 - mcp.client.sse - DEBUG - SSE connection established
+2025-03-20 15:41:17,484 - mcp.client.sse - DEBUG - Received SSE event: endpoint
+2025-03-20 15:41:17,484 - mcp.client.sse - INFO - Received endpoint URL: https://router.mcp.so/messages?sessionid=e851b558-540c-41d5-a18b-720ab60b4321
+2025-03-20 15:41:17,485 - mcp.client.sse - INFO - Starting post writer with endpoint URL: https://router.mcp.so/messages?sessionid=e851b558-540c-41d5-a18b-720ab60b4321
+2025-03-20 15:41:17,485 - mcp.client.sse - DEBUG - Sending client message: root=JSONRPCRequest(method='initialize', params={'protocolVersion': '2024-11-05', 'capabilities': {'sampling': {}, 'roots': {'listChanged': True}}, 'clientInfo': {'name': 'mcp', 'version': '0.1.0'}}, jsonrpc='2.0', id=0)
+2025-03-20 15:41:17,870 - mcp.client.sse - DEBUG - Received SSE event: message
+2025-03-20 15:41:17,870 - mcp.client.sse - DEBUG - Received server message: root=JSONRPCResponse(jsonrpc='2.0', id=0, result={'capabilities': {'experimental': {}, 'tools': {'listChanged': False}}, 'protocolVersion': '2024-11-05', 'serverInfo': {'name': 'mcp-time', 'version': '1.4.1'}})
+2025-03-20 15:41:17,890 - mcp.client.sse - DEBUG - Client message sent successfully: 202
+2025-03-20 15:41:17,890 - mcp.client.sse - DEBUG - Sending client message: root=JSONRPCNotification(method='notifications/initialized', jsonrpc='2.0', params=None)
+2025-03-20 15:41:18,223 - mcp.client.sse - DEBUG - Client message sent successfully: 202
+2025-03-20 15:41:18,223 - mcp.client.sse - DEBUG - Sending client message: root=JSONRPCRequest(method='tools/list', params=None, jsonrpc='2.0', id=1)
+2025-03-20 15:41:18,482 - mcp.client.sse - DEBUG - Received SSE event: message
+2025-03-20 15:41:18,482 - mcp.client.sse - DEBUG - Received server message: root=JSONRPCResponse(jsonrpc='2.0', id=1, result={'tools': [{'description': 'Get current time in a specific timezones', 'inputSchema': {'properties': {'timezone': {'description': "IANA timezone name (e.g., 'America/New_York', 'Europe/London'). Use 'UTC' as local timezone if no timezone provided by the user.", 'type': 'string'}}, 'required': ['timezone'], 'type': 'object'}, 'name': 'get_current_time'}, {'description': 'Convert time between timezones', 'inputSchema': {'properties': {'source_timezone': {'description': "Source IANA timezone name (e.g., 'America/New_York', 'Europe/London'). Use 'UTC' as local timezone if no source timezone provided by the user.", 'type': 'string'}, 'target_timezone': {'description': "Target IANA timezone name (e.g., 'Asia/Tokyo', 'America/San_Francisco'). Use 'UTC' as local timezone if no target timezone provided by the user.", 'type': 'string'}, 'time': {'description': 'Time to convert in 24-hour format (HH:MM)', 'type': 'string'}}, 'required': ['source_timezone', 'time', 'target_timezone'], 'type': 'object'}, 'name': 'convert_time'}]})
+2025-03-20 15:41:18,508 - mcp.client.sse - DEBUG - Client message sent successfully: 202
+2025-03-20 15:41:20,542 - mcp - INFO - MCP Performance: {
+  "timestamp": "2025-03-20T15:41:20.542039",
+  "server_name": "agent",
+  "operation": "chat_node",
+  "duration_ms": 4531.795978546143,
+  "success": true
+}

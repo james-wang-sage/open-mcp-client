@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Open MCP Client",
+  title: "Intacct Copilot Orchestration",
   description: "An open source MCP client built with CopilotKit 🪁",
 };
 
