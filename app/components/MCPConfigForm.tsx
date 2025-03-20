@@ -178,7 +178,7 @@ export function MCPConfigForm() {
               />
             </svg>
             <h1 className="text-3xl sm:text-5xl font-semibold">
-              Open MCP Client
+              Intacct Copilot Orchestration
             </h1>
           </div>
         </div>
