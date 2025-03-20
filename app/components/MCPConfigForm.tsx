@@ -185,54 +185,7 @@ export function MCPConfigForm() {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-4 gap-4">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3">
             <p className="text-sm text-gray-600">
-              Manage and configure your MCP servers
             </p>
-            <div className="flex items-center gap-4">
-              <a
-                href="https://github.com/CopilotKit/mcp-client-langgraph"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-blue-600 hover:text-blue-800 flex items-center"
-              >
-                <span className="mr-1">GitHub Repo</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-3.5 w-3.5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://docs.copilotkit.ai/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-blue-600 hover:text-blue-800 flex items-center"
-              >
-                <span className="mr-1">Documentation</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-3.5 w-3.5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-              </a>
-            </div>
           </div>
           <button
             onClick={() => setShowAddServerForm(true)}
@@ -252,7 +205,7 @@ export function MCPConfigForm() {
                 d="M12 4v16m8-8H4"
               />
             </svg>
-            Add Server
+            Add Skill
           </button>
         </div>
       </div>
@@ -260,15 +213,15 @@ export function MCPConfigForm() {
       {/* Server Statistics */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
         <div className="bg-white border rounded-md p-4">
-          <div className="text-sm text-gray-500">Total Servers</div>
+          <div className="text-sm text-gray-500">Total Skills</div>
           <div className="text-3xl font-bold">{totalServers}</div>
         </div>
         <div className="bg-white border rounded-md p-4">
-          <div className="text-sm text-gray-500">Stdio Servers</div>
+          <div className="text-sm text-gray-500">Stdio Skills</div>
           <div className="text-3xl font-bold">{stdioServers}</div>
         </div>
         <div className="bg-white border rounded-md p-4">
-          <div className="text-sm text-gray-500">SSE Servers</div>
+          <div className="text-sm text-gray-500">SSE Skills</div>
           <div className="text-3xl font-bold">{sseServers}</div>
         </div>
       </div>
@@ -307,11 +260,11 @@ export function MCPConfigForm() {
 
       {/* Server List */}
       <div className="bg-white border rounded-md p-6">
-        <h2 className="text-lg font-semibold mb-4">Server List</h2>
+        <h2 className="text-lg font-semibold mb-4">Skill List</h2>
 
         {totalServers === 0 ? (
           <div className="text-gray-500 text-center py-10">
-            No servers configured. Click &quot;Add Server&quot; to get started.
+            No skills configured. Click &quot;Add Skill&quot; to get started.
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -419,30 +372,6 @@ export function MCPConfigForm() {
             ))}
           </div>
         )}
-
-        {/* Composio & mcp.run reference */}
-        <div className="mt-10 pt-4 border-t text-center text-sm text-gray-500">
-          More MCP servers available on the web, e.g.{" "}
-          <a
-            href="https://mcp.composio.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-700 hover:text-gray-900 inline-flex items-center mr-2"
-          >
-            mcp.composio.dev
-            <ExternalLink />
-          </a>
-          and{" "}
-          <a
-            href="https://www.mcp.run/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-700 hover:text-gray-900 inline-flex items-center"
-          >
-            mcp.run
-            <ExternalLink />
-          </a>
-        </div>
       </div>
 
       {/* Add Server Modal */}
@@ -465,7 +394,7 @@ export function MCPConfigForm() {
                     d="M12 4v16m8-8H4"
                   />
                 </svg>
-                Add New Server
+                Add New Skill
               </h2>
               <button
                 onClick={() => setShowAddServerForm(false)}
@@ -491,7 +420,7 @@ export function MCPConfigForm() {
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-1">
-                  Server Name
+                  Skill Name
                 </label>
                 <input
                   type="text"
@@ -639,7 +568,7 @@ export function MCPConfigForm() {
                       d="M12 4v16m8-8H4"
                     />
                   </svg>
-                  Add Server
+                  Add Skill
                 </button>
               </div>
             </div>
