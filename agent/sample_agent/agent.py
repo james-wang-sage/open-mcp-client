@@ -65,7 +65,7 @@ async def chat_node(state: AgentState, config: RunnableConfig) -> Command[Litera
         mcp_tools = mcp_client.get_tools()
         
         # Create the react agent
-        model = ChatOpenAI(model="gpt-4o")
+        model = ChatOpenAI(model="gpt-4o-mini")
         react_agent = create_react_agent(model, mcp_tools)
         
         # Prepare messages for the react agent
