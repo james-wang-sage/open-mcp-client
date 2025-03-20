@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useCoAgent } from "@copilotkit/react-core";
-import { ExampleConfigs } from "./ExampleConfigs";
+import { useEffect, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { ExampleConfigs } from "./ExampleConfigs";
 
 type ConnectionType = "stdio" | "sse";
 
@@ -11,11 +11,13 @@ interface StdioConfig {
   command: string;
   args: string[];
   transport: "stdio";
+  enabled: boolean;
 }
 
 interface SSEConfig {
   url: string;
   transport: "sse";
+  enabled: boolean;
 }
 
 type ServerConfig = StdioConfig | SSEConfig;
@@ -124,10 +126,12 @@ export function MCPConfigForm() {
             command,
             args: args.split(" ").filter((arg) => arg.trim() !== ""),
             transport: "stdio" as const,
+            enabled: true,
           }
         : {
             url,
             transport: "sse" as const,
+            enabled: true,
           };
 
     setConfigs({
@@ -355,25 +359,48 @@ export function MCPConfigForm() {
                         {config.transport}
                       </div>
                     </div>
-                    <button
-                      onClick={() => removeConfig(name)}
-                      className="text-gray-400 hover:text-red-500"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-4 h-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => {
+                          const updatedConfig = {
+                            ...config,
+                            enabled: !config.enabled
+                          };
+                          setConfigs({
+                            ...configs,
+                            [name]: updatedConfig
+                          });
+                        }}
+                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 ${
+                          config.enabled ? 'bg-gray-800' : 'bg-gray-200'
+                        }`}
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                        <span
+                          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                            config.enabled ? 'translate-x-6' : 'translate-x-1'
+                          }`}
                         />
-                      </svg>
-                    </button>
+                      </button>
+                      <button
+                        onClick={() => removeConfig(name)}
+                        className="text-gray-400 hover:text-red-500"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-4 h-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                          />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                   <div className="mt-3 text-sm text-gray-600">
                     {config.transport === "stdio" ? (

@@ -19,10 +19,12 @@ class StdioConnection(TypedDict):
     command: str
     args: List[str]
     transport: Literal["stdio"]
+    enabled: bool
 
 class SSEConnection(TypedDict):
     url: str
     transport: Literal["sse"]
+    enabled: bool
 
 # Type for MCP configuration
 MCPConfig = Dict[str, Union[StdioConnection, SSEConnection]]
@@ -46,6 +48,7 @@ DEFAULT_MCP_CONFIG: MCPConfig = {
         # Use a relative path that will be resolved based on the current working directory
         "args": [os.path.join(os.path.dirname(__file__), "..", "math_server.py")],
         "transport": "stdio",
+        "enabled": True,
     },
 }
 
@@ -54,13 +57,27 @@ async def chat_node(state: AgentState, config: RunnableConfig) -> Command[Litera
     This is a simplified agent that uses the ReAct agent as a subgraph.
     It handles both chat responses and tool execution in one node.
     """
-    # Get MCP configuration from state, or use the default config if not provided
-    mcp_config = state.get("mcp_config", DEFAULT_MCP_CONFIG)
-
-    print(f"mcp_config: {mcp_config}, default: {DEFAULT_MCP_CONFIG}")
+    # Get MCP configuration from state
+    state_config = state.get("mcp_config", {})
     
-    # Set up the MCP client and tools using the configuration from state
-    async with MultiServerMCPClient(mcp_config) as mcp_client:
+    # Merge state config with default config, giving priority to state config
+    mcp_config = DEFAULT_MCP_CONFIG.copy()
+    mcp_config.update(state_config)
+
+    # Filter out disabled servers and remove enabled field from config
+    enabled_mcp_config = {}
+    for name, server_config in mcp_config.items():
+        # Explicitly check if enabled is False, default to True if not specified
+        if server_config.get("enabled", True) is not False:
+            # Create a copy of the config without the enabled field
+            filtered_config = server_config.copy()
+            filtered_config.pop("enabled", None)
+            enabled_mcp_config[name] = filtered_config
+
+    print(f"mcp_config: {enabled_mcp_config}, default: {DEFAULT_MCP_CONFIG}")
+    
+    # Set up the MCP client and tools using only enabled servers
+    async with MultiServerMCPClient(enabled_mcp_config) as mcp_client:
         # Get the tools
         mcp_tools = mcp_client.get_tools()
         
