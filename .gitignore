@@ -46,3 +46,4 @@ next-env.d.ts
 # langgraph
 .langgraph_api
 agent/model-context-protocol/weather/starter-stdio-server/target
+agent/mcp.log
