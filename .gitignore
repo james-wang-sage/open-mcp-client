@@ -45,13 +45,11 @@ next-env.d.ts
 
 # langgraph
 .langgraph_api
-<<<<<<< HEAD
-agent/model-context-protocol/weather/starter-stdio-server/target
-agent/mcp.log
-=======
 
 # agent-specific files
+agent/src/main/resources/intacct_token.properties
 agent/mcp.log
 agent/model-context-protocol/
-agent/src/main/resources/intacct_token.properties
->>>>>>> 6f248d5 (Update intacct access token expiry date)
+agent/model-context-protocol/weather/starter-stdio-server/target
+
+.qodo
