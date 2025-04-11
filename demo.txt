@@ -34,3 +34,13 @@ list all models
 find vendors with the highest credit limit and where the credit limit is not null
 does the vendor have a name field
 what's the name of the vendor with ID SEC
+
+================================================================================
+
+# enable 'Accounts Payable' and 'Model and Query' skills
+create a vendor using random id and name
+run a query to find a vendor with the id VENDOR12345 and retrieve the key field
+get vendor details with key 313180
+
+================================================================================
+
