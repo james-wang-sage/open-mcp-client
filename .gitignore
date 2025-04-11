@@ -54,3 +54,4 @@ agent/model-context-protocol/weather/starter-stdio-server/target
 agent/mcp.server.bva
 
 .qodo
+agent/mcp-server-query.log
