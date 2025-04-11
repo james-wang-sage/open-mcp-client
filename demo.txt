@@ -1,0 +1,36 @@
+
+1. no skill
+how to setup multi book
+
+2. enable 'Help Search' skill
+how to setup multi book
+
+3. show public MCP servers: https://mcp.so/
+7811
+
+4. enable 'Tavily' skill
+search for how to set up a multi-book in Sage Intacct
+
+================================================================================
+
+1. no skill
+what's the weather today
+
+2. enable 'Weather' skill
+what's the weather today
+san jose, ca
+
+3. follow up
+how did you get the latitude and longitude info
+
+4. enable 'Tavily' skill
+search for San Jose, CA latitude and longitude
+
+================================================================================
+
+# enable 'Model and Query' skill
+/skills
+list all models
+find vendors with the highest credit limit and where the credit limit is not null
+does the vendor have a name field
+what's the name of the vendor with ID SEC
