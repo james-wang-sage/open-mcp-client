@@ -47,7 +47,7 @@ const ExternalLink = () => (
   </svg>
 );
 
-export function MCPConfigForm() {
+export function MCPConfigForm({ showSpreadsheet, setShowSpreadsheet }: { showSpreadsheet: boolean, setShowSpreadsheet: (value: boolean) => void }) {
   // Use our localStorage hook for persistent storage
   const [savedConfigs, setSavedConfigs] = useLocalStorage<
     Record<string, ServerConfig>
@@ -187,16 +187,10 @@ export function MCPConfigForm() {
             <p className="text-sm text-gray-600">
             </p>
           </div>
-          <button
-            onClick={() => setShowAddServerForm(true)}
-            className="w-full sm:w-auto px-3 py-1.5 bg-gray-800 text-white rounded-md text-sm font-medium hover:bg-gray-700 flex items-center gap-1 justify-center"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          <div className="flex gap-2">
+            <button
+              onClick={() => setShowSpreadsheet(!showSpreadsheet)}
+              className="w-full sm:w-auto px-3 py-1.5 bg-gray-800 text-white rounded-md text-sm font-medium hover:bg-gray-700 flex items-center gap-1 justify-center"
             >
               <path
                 strokeLinecap="round"
@@ -207,6 +201,30 @@ export function MCPConfigForm() {
             </svg>
             Add Skill
           </button>
+<!--               {showSpreadsheet ? 'Hide Spreadsheet' : 'Show Spreadsheet'}
+            </button>
+            <button
+              onClick={() => setShowAddServerForm(true)}
+              className="w-full sm:w-auto px-3 py-1.5 bg-gray-800 text-white rounded-md text-sm font-medium hover:bg-gray-700 flex items-center gap-1 justify-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
+              Add Server
+            </button>
+          </div> -->
+
         </div>
       </div>
 

@@ -14,6 +14,8 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 from langgraph.prebuilt import create_react_agent
 from langchain_core.messages import SystemMessage, AIMessage
 from utils.logger import mcp_logger
+from copilotkit.langgraph import (copilotkit_exit)
+
 import os
 import time
 
@@ -71,7 +73,7 @@ async def chat_node(state: AgentState, config: RunnableConfig) -> Command[Litera
     try:
         # Get MCP configuration from state
         state_config = state.get("mcp_config", {})
-        
+
         # Merge state config with default config, giving priority to state config
         mcp_config = DEFAULT_MCP_CONFIG.copy()
         mcp_config.update(state_config)
@@ -200,6 +202,14 @@ async def chat_node(state: AgentState, config: RunnableConfig) -> Command[Litera
             error_type=type(e).__name__,
             error_message=str(e),
             stack_trace=None
+
+          # Update the state with the new messages
+#         updated_messages = state["messages"] + agent_response.get("messages", []) 
+#         await copilotkit_exit(config)
+        # End the graph with the updated messages
+#         return Command(
+#             goto=END,
+#             update={"messages": updated_messages},
         )
         raise
 
