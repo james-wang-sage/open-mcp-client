@@ -1,13 +1,17 @@
 "use client";
 
-import { CopilotChat } from "@copilotkit/react-ui";
-import { CopilotActionHandler } from "./components/CopilotActionHandler";
-import { CopilotKitCSSProperties } from "@copilotkit/react-ui";
-import { MCPConfigForm } from "./components/MCPConfigForm";
+import { CopilotChat, CopilotKitCSSProperties } from "@copilotkit/react-ui";
 import { useState } from "react";
+import { CopilotActionHandler } from "./components/CopilotActionHandler";
+import { MCPConfigForm } from "./components/MCPConfigForm";
 
 export default function Home() {
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isChatHalfWidth, setIsChatHalfWidth] = useState(false);
+
+  // Helper classes for dynamic widths
+  const mainContentRightMargin = isChatHalfWidth ? "lg:mr-[50vw]" : "lg:mr-[30vw]";
+  const chatFrameWidth = isChatHalfWidth ? "lg:w-[50vw]" : "lg:w-[30vw]";
 
   return (
     <div className="min-h-screen bg-gray-50 flex relative">
@@ -15,7 +19,19 @@ export default function Home() {
       <CopilotActionHandler />
 
       {/* Main content area */}
-      <div className="flex-1 p-4 md:p-8 lg:mr-[30vw]">
+      <div className={`flex-1 p-4 md:p-8 ${mainContentRightMargin} relative`}>
+        {/* Resize button - only visible on large screens */}
+        <button
+          onClick={() => setIsChatHalfWidth((v) => !v)}
+          className="hidden lg:block absolute top-4 right-4 z-30 p-2 bg-gray-200 hover:bg-gray-300 rounded shadow border border-gray-300"
+          title={isChatHalfWidth ? "Set chat to 30% width" : "Set chat to 50% width"}
+        >
+          {isChatHalfWidth ? (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 12h16M8 8l-4 4 4 4" /></svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4m8-8l4 4-4 4" /></svg>
+          )}
+        </button>
         <MCPConfigForm />
       </div>
 
@@ -60,7 +76,7 @@ export default function Home() {
 
       {/* Fixed sidebar - hidden on mobile, shown on larger screens */}
       <div
-        className={`fixed top-0 right-0 h-full w-full md:w-[80vw] lg:w-[30vw] border-l bg-white shadow-md transition-transform duration-300 ${
+        className={`fixed top-0 right-0 h-full w-full md:w-[80vw] ${chatFrameWidth} border-l bg-white shadow-md transition-transform duration-300 ${
           isChatOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0"
         }`}
         style={
