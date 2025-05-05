@@ -16,6 +16,7 @@ from langchain_core.messages import SystemMessage, AIMessage
 from utils.logger import mcp_logger
 import os
 import time
+from langchain_ollama.chat_models import ChatOllama
 
 # Define the connection type structures
 class StdioConnection(TypedDict):
@@ -131,11 +132,7 @@ async def chat_node(state: AgentState, config: RunnableConfig) -> Command[Litera
             else:
                 # Proceed with the normal agent flow if not /skills
                 # Create the react agent with optimized configuration
-                model = ChatOpenAI(
-                    model="gpt-4o-mini",
-                    max_tokens=4096,  # 限制输出token数量
-                    temperature=0.7
-                )
+                model = ChatOllama(model="qwen3:30b-a3b", base_url="http://localhost:11111")
                 react_agent = create_react_agent(model, mcp_tools)
                 
                 # 截断消息历史，只保留最后10条消息
