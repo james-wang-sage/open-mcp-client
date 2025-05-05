@@ -374,6 +374,72 @@ export function MCPConfigForm() {
         )}
       </div>
 
+      {/* Import/Export Buttons */}
+      <div className="flex gap-2 justify-end mt-4">
+        <button
+          onClick={async () => {
+            try {
+              await navigator.clipboard.writeText(
+                JSON.stringify(configs, null, 2)
+              );
+              alert("Exported MCP Servers to clipboard as JSON.");
+            } catch (err) {
+              alert("Failed to export to clipboard: " + err);
+            }
+          }}
+          className="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 text-sm font-medium flex items-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-4 h-4 mr-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M8 17l4 4 4-4m-4-5v9"
+            />
+          </svg>
+          Export
+        </button>
+        <button
+          onClick={async () => {
+            try {
+              const text = await navigator.clipboard.readText();
+              const json = JSON.parse(text);
+              if (typeof json === "object" && json !== null) {
+                setConfigs(json);
+                alert("Imported MCP Servers from clipboard.");
+              } else {
+                alert("Clipboard does not contain a valid MCP Servers JSON config.");
+              }
+            } catch (err) {
+              alert("Failed to import from clipboard: " + err);
+            }
+          }}
+          className="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 text-sm font-medium flex items-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-4 h-4 mr-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 4v16m8-8H4"
+            />
+          </svg>
+          Import
+        </button>
+      </div>
+
       {/* Add Server Modal */}
       {showAddServerForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
