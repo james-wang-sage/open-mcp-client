@@ -1,11 +1,11 @@
 export interface Cell {
-    value: string;
-  }
+  value: string;
+}
   
-  export type SpreadsheetRow = Cell[];
+export type SpreadsheetRow = Cell[];
   
-  export interface SpreadsheetData {
-    title: string;
-    rows: SpreadsheetRow[];
-  }
+export interface SpreadsheetData {
+  title: string;
+  rows: SpreadsheetRow[];
+}
   

@@ -45,4 +45,14 @@ next-env.d.ts
 
 # langgraph
 .langgraph_api
+
+# agent-specific files
+agent/src/main/resources/intacct_token.properties
+agent/mcp.log
+agent/model-context-protocol/
+agent/model-context-protocol/weather/starter-stdio-server/target
+agent/mcp.server.bva
+
 .qodo
+agent/mcp-server-query.log
+agent/src/main/resources/intacct_token.properties
