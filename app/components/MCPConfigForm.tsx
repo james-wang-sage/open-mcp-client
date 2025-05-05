@@ -25,10 +25,14 @@ type ServerConfig = StdioConfig | SSEConfig;
 // Define a generic type for our state
 interface AgentState {
   mcp_config: Record<string, ServerConfig>;
+  system_prompt: string;
 }
 
 // Local storage key for saving agent state
 const STORAGE_KEY = "mcp-agent-state";
+
+const DEFAULT_SYSTEM_PROMPT = `You are a helpful assistant specializing in Sage Intacct products. Assume all questions are related to Sage Intacct unless the user explicitly states otherwise.\n1. Answer questions based on your knowledge of Sage Intacct.\n2. If you need additional information or capabilities to answer (even within the assumed Sage Intacct context), check if any available tools (registered for this session) can help. Use relevant tools when necessary.\n3. When asked questions about Intacct objects (models):\n   - If you do not have the object schema information in the context, first use the 'listAvailableModels' tool to confirm the object name.\n   - Then use the 'getModelDefinition' tool to get the details about the object. When calling 'getModelDefinition', only use the 'name' field and do NOT add a 'type' field or any other field unless explicitly asked to. For example:\n     {\n       "name": "objects/company-config/employee"\n     }\n     Do NOT include 'type', e.g. this is incorrect:\n     {\n       "name": "objects/general-ledger/journal-entry",\n       "type": "object"\n     }\n   - When querying, use the 'executeQuery' tool only after you have the object details.\n   - Only use fields that are present in the object details returned by 'getModelDefinition'.\n   - Do not guess or use any unknown fields in the query.\n   - Anything used in the 'executeQuery' tool must be defined in the schema or tools.\n4. If, after checking your knowledge and available tools, you still cannot answer the question (or if the user explicitly stated the question is *not* about Sage Intacct and you lack the knowledge/tools), state that you cannot provide an answer.\n5. If the user enters '/skills', list all the tools currently available to you in this session, including their names and descriptions.`;
+const SYSTEM_PROMPT_STORAGE_KEY = "system-prompt";
 
 const ExternalLink = () => (
   <svg
@@ -59,6 +63,7 @@ export function MCPConfigForm() {
       name: "sample_agent",
       initialState: {
         mcp_config: savedConfigs,
+        system_prompt: DEFAULT_SYSTEM_PROMPT,
       },
     }
   );
@@ -81,6 +86,11 @@ export function MCPConfigForm() {
   const [showAddServerForm, setShowAddServerForm] = useState(false);
   const [showExampleConfigs, setShowExampleConfigs] = useState(false);
 
+  // System Prompt state and modal
+  const [systemPrompt, setSystemPrompt] = useLocalStorage<string>(SYSTEM_PROMPT_STORAGE_KEY, DEFAULT_SYSTEM_PROMPT);
+  const [showPromptModal, setShowPromptModal] = useState(false);
+  const [promptDraft, setPromptDraft] = useState(systemPrompt);
+
   // Calculate server statistics
   const totalServers = Object.keys(configs).length;
   const stdioServers = Object.values(configs).filter(
@@ -96,6 +106,11 @@ export function MCPConfigForm() {
       setIsLoading(false);
     }
   }, [agentState]);
+
+  // When systemPrompt changes, update agent state
+  useEffect(() => {
+    setAgentState((prev: any) => ({ ...prev, system_prompt: systemPrompt }));
+  }, [systemPrompt]);
 
   const handleExampleConfig = (exampleConfig: Record<string, ServerConfig>) => {
     // Merge the example with existing configs or replace them based on user preference
@@ -377,6 +392,26 @@ export function MCPConfigForm() {
       {/* Import/Export Buttons */}
       <div className="flex gap-2 justify-end mt-4">
         <button
+          onClick={() => { setPromptDraft(systemPrompt); setShowPromptModal(true); }}
+          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium flex items-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-4 h-4 mr-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 4v16m8-8H4"
+            />
+          </svg>
+          System Prompt
+        </button>
+        <button
           onClick={async () => {
             try {
               await navigator.clipboard.writeText(
@@ -638,6 +673,41 @@ export function MCPConfigForm() {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {showPromptModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl relative">
+            <h2 className="text-lg font-semibold mb-2">Edit System Prompt</h2>
+            <textarea
+              className="w-full h-48 border rounded-md p-2 text-sm mb-4"
+              value={promptDraft}
+              onChange={e => setPromptDraft(e.target.value)}
+            />
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => setShowPromptModal(false)}
+                className="px-4 py-2 border text-gray-700 rounded-md hover:bg-gray-50 text-sm font-medium"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => { setSystemPrompt(promptDraft); setShowPromptModal(false); }}
+                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium"
+              >
+                Save
+              </button>
+            </div>
+            <button
+              onClick={() => setShowPromptModal(false)}
+              className="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
         </div>
       )}

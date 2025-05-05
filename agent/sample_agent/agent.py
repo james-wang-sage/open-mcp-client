@@ -219,7 +219,7 @@ async def chat_node(state: AgentState, config: RunnableConfig) -> Command[Litera
                 conversation_messages = all_messages[-MAX_MESSAGES:]
             else:
                 conversation_messages = all_messages
-            system_message = SystemMessage(content=SYSTEM_PROMPT)
+            system_message = SystemMessage(content=state.get("system_prompt", SYSTEM_PROMPT))
             agent_input_messages = [system_message] + conversation_messages
             agent_input = {
                 "messages": agent_input_messages
