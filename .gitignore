@@ -55,4 +55,5 @@ agent/mcp.server.bva
 
 .qodo
 agent/mcp-server-query.log
+agent/mcp-server-query.log.*.gz
 agent/src/main/resources/intacct_token.properties
