@@ -59,4 +59,3 @@ agent/mcp-server-query.log.*.gz
 agent/src/main/resources/intacct_token.properties
 
 .idea/
-

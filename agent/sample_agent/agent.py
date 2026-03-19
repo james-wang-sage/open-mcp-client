@@ -14,6 +14,7 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 from langgraph.prebuilt import create_react_agent
 from langchain_core.messages import SystemMessage, AIMessage
 from utils.logger import mcp_logger
+from copilotkit.langgraph import (copilotkit_exit)
 import os
 import time
 from langchain_ollama.chat_models import ChatOllama
@@ -256,6 +257,7 @@ async def chat_node(state: AgentState, config: RunnableConfig) -> Command[Litera
             error_type=type(e).__name__,
             error_message=str(e),
             stack_trace=None
+
         )
         raise
 

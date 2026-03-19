@@ -34,7 +34,6 @@ export default function Home() {
         </button>
         <MCPConfigForm />
       </div>
-
       {/* Mobile chat toggle button */}
       <button
         onClick={() => setIsChatOpen(!isChatOpen)}
@@ -87,9 +86,10 @@ export default function Home() {
       >
         <CopilotChat
           className="h-full flex flex-col"
-          instructions={
-            "You are assisting the user as best as you can. Answer in the best way possible given the data you have."
-          }
+          // instructions={
+          //   "You are assisting the user as best as you can. Answer in the best way possible given the data you have."
+          // }
+          instructions={INSTRUCTIONS}
           labels={{
             title: "MCP Assistant",
             initial: "Need any help?",
