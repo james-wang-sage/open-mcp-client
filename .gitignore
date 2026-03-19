@@ -57,3 +57,6 @@ agent/mcp.server.bva
 agent/mcp-server-query.log
 agent/mcp-server-query.log.*.gz
 agent/src/main/resources/intacct_token.properties
+
+.idea/
+
