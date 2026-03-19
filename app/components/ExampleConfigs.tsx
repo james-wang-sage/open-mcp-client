@@ -1,10 +1,9 @@
 "use client";
 
 import {
-  Calculator,
-  Search,
-  Database,
-  ArrowRight,
+    ArrowRight,
+    Database,
+    Search,
 } from "lucide-react";
 import { JSX } from "react";
 
@@ -16,19 +15,6 @@ type ExampleConfig = {
 };
 
 const EXAMPLE_CONFIGS: ExampleConfig[] = [
-  {
-    name: "Math Service",
-    description:
-      "A simple Python server that can perform mathematical operations",
-    icon: <Calculator className="h-4 w-4 text-gray-600" />,
-    config: {
-      math: {
-        command: "python",
-        args: ["agent/math_server.py"],
-        transport: "stdio",
-      },
-    },
-  },
   {
     name: "Web Search",
     description: "Connect to a search service via SSE",
@@ -46,11 +32,6 @@ const EXAMPLE_CONFIGS: ExampleConfig[] = [
       "A combination of multiple services for comprehensive functionality",
     icon: <Database className="h-4 w-4 text-gray-600" />,
     config: {
-      math: {
-        command: "python",
-        args: ["agent/math_server.py"],
-        transport: "stdio",
-      },
       search: {
         url: "http://localhost:8000/search/events",
         transport: "sse",

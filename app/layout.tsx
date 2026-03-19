@@ -1,8 +1,8 @@
+import { CopilotKit } from "@copilotkit/react-core";
+import "@copilotkit/react-ui/styles.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import "@copilotkit/react-ui/styles.css";
-import { CopilotKit } from "@copilotkit/react-core";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Open MCP Client",
+  title: "Intacct Copilot Orchestration",
   description: "An open source MCP client built with CopilotKit 🪁",
 };
 
@@ -28,6 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased w-screen h-screen`}
+        suppressHydrationWarning
       >
         <CopilotKit
           runtimeUrl="/api/copilotkit"

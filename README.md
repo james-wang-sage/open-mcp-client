@@ -41,6 +41,7 @@ Add the following inside `agent/.env`:
 ```sh
 OPENAI_API_KEY=sk-...
 LANGSMITH_API_KEY=lsv2_...
+OPENROUTER_API_KEY=sk-or-...  # Get from https://openrouter.ai/keys
 ```
 
 ## Set Up Poetry:

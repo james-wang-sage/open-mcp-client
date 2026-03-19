@@ -1,0 +1,98 @@
+
+This is a demo for Copilot Orchestration.
+Right now, we already have several Copilots—like Help Search, Intacct Insights, and Trigger JB demoed yesterday —
+and we want to bring them together under a single UI to improve the user experience.
+
+We think of these Copilots as individual skills. Depending on the user’s profile and company configuration, different skills may be available.
+
+And because the available skills can be different, the Copilot’s response might also be different.
+
+================================================================================
+
+1. no skill
+how to setup multi book
+
+2. enable 'Help Search' skill
+how to setup multi book
+
+3. show public MCP servers: https://mcp.so/
+7811
+
+4. enable 'Tavily' skill
+search for how to set up a multi-book in Sage Intacct
+
+================================================================================
+
+1. no skill
+what's the weather today
+
+2. enable 'Weather' skill
+what's the weather today
+san jose, ca
+
+3. follow up
+how did you get the latitude and longitude info
+
+4. enable 'Tavily' skill
+search for San Jose, CA latitude and longitude
+
+================================================================================
+
+# enable 'Model and Query' skill
+/skills
+list models
+show vendor model
+find vendors with the highest credit limit and where the credit limit is not null
+does the vendor have a name field
+what's the name of the vendor with ID SEC
+
+================================================================================
+
+# enable 'Accounts Payable' skill
+/skills
+create a vendor using random id and name
+get vendor details with key 313182
+
+# enable 'Model and Query' skill
+/skills
+run a query to find a vendor with the id VEND12345 and retrieve the key field
+
+================================================================================
+
+That wraps up the demo portion.
+Now I’d love to open it up for
+
+any questions
+
+you might have—feel free to ask about the features,
+the orchestration logic, skill activation, or anything else you’re curious about.
+
+I pretend to know all the answers.
+
+================================================================================
+
+To quickly recap:
+	•	We saw how different skills like Help Search, Tavily, Weather, and Model & Query can be orchestrated dynamically based on the context.
+	•	Depending on which skills are enabled, the Copilot’s behavior changes in real-time to provide more intelligent and relevant responses.
+	•	This flexible, modular approach allows us to tailor the experience for each user and organization.
+
+Ultimately, Copilot Orchestration gives us a unified, intelligent, and extensible interface—one that’s adaptive and ready to grow as new skills are introduced.
+
+
+Thanks again
+
+
+for joining the demo today! We’re excited about where this is going, and we hope you are too.
+
+================================================================================
+
+
+
+
+
+
+
+
+
+
+

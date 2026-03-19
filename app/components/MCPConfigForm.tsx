@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useCoAgent } from "@copilotkit/react-core";
-import { ExampleConfigs } from "./ExampleConfigs";
+import { useEffect, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { ExampleConfigs } from "./ExampleConfigs";
 
 type ConnectionType = "stdio" | "sse";
 
@@ -11,11 +11,13 @@ interface StdioConfig {
   command: string;
   args: string[];
   transport: "stdio";
+  enabled: boolean;
 }
 
 interface SSEConfig {
   url: string;
   transport: "sse";
+  enabled: boolean;
 }
 
 type ServerConfig = StdioConfig | SSEConfig;
@@ -23,10 +25,14 @@ type ServerConfig = StdioConfig | SSEConfig;
 // Define a generic type for our state
 interface AgentState {
   mcp_config: Record<string, ServerConfig>;
+  system_prompt: string;
 }
 
 // Local storage key for saving agent state
 const STORAGE_KEY = "mcp-agent-state";
+
+const DEFAULT_SYSTEM_PROMPT = `You are a helpful assistant specializing in Sage Intacct products. Assume all questions are related to Sage Intacct unless the user explicitly states otherwise.\n1. Answer questions based on your knowledge of Sage Intacct.\n2. If you need additional information or capabilities to answer (even within the assumed Sage Intacct context), check if any available tools (registered for this session) can help. Use relevant tools when necessary.\n3. When asked questions about Intacct objects (models):\n   - If you do not have the object schema information in the context, first use the 'listAvailableModels' tool to confirm the object name.\n   - Then use the 'getModelDefinition' tool to get the details about the object. When calling 'getModelDefinition', only use the 'name' field and do NOT add a 'type' field or any other field unless explicitly asked to. For example:\n     {\n       "name": "objects/company-config/employee"\n     }\n     Do NOT include 'type', e.g. this is incorrect:\n     {\n       "name": "objects/general-ledger/journal-entry",\n       "type": "object"\n     }\n   - When querying, use the 'executeQuery' tool only after you have the object details.\n   - Only use fields that are present in the object details returned by 'getModelDefinition'.\n   - Do not guess or use any unknown fields in the query.\n   - Anything used in the 'executeQuery' tool must be defined in the schema or tools.\n4. If, after checking your knowledge and available tools, you still cannot answer the question (or if the user explicitly stated the question is *not* about Sage Intacct and you lack the knowledge/tools), state that you cannot provide an answer.\n5. If the user enters '/skills', list all the tools currently available to you in this session, including their names and descriptions.`;
+const SYSTEM_PROMPT_STORAGE_KEY = "system-prompt";
 
 const ExternalLink = () => (
   <svg
@@ -57,6 +63,7 @@ export function MCPConfigForm({ showSpreadsheet, setShowSpreadsheet }: { showSpr
       name: "sample_agent",
       initialState: {
         mcp_config: savedConfigs,
+        system_prompt: DEFAULT_SYSTEM_PROMPT,
       },
     }
   );
@@ -79,6 +86,11 @@ export function MCPConfigForm({ showSpreadsheet, setShowSpreadsheet }: { showSpr
   const [showAddServerForm, setShowAddServerForm] = useState(false);
   const [showExampleConfigs, setShowExampleConfigs] = useState(false);
 
+  // System Prompt state and modal
+  const [systemPrompt, setSystemPrompt] = useLocalStorage<string>(SYSTEM_PROMPT_STORAGE_KEY, DEFAULT_SYSTEM_PROMPT);
+  const [showPromptModal, setShowPromptModal] = useState(false);
+  const [promptDraft, setPromptDraft] = useState(systemPrompt);
+
   // Calculate server statistics
   const totalServers = Object.keys(configs).length;
   const stdioServers = Object.values(configs).filter(
@@ -94,6 +106,11 @@ export function MCPConfigForm({ showSpreadsheet, setShowSpreadsheet }: { showSpr
       setIsLoading(false);
     }
   }, [agentState]);
+
+  // When systemPrompt changes, update agent state
+  useEffect(() => {
+    setAgentState((prev: any) => ({ ...prev, system_prompt: systemPrompt }));
+  }, [systemPrompt]);
 
   const handleExampleConfig = (exampleConfig: Record<string, ServerConfig>) => {
     // Merge the example with existing configs or replace them based on user preference
@@ -124,10 +141,12 @@ export function MCPConfigForm({ showSpreadsheet, setShowSpreadsheet }: { showSpr
             command,
             args: args.split(" ").filter((arg) => arg.trim() !== ""),
             transport: "stdio" as const,
+            enabled: true,
           }
         : {
             url,
             transport: "sse" as const,
+            enabled: true,
           };
 
     setConfigs({
@@ -174,105 +193,44 @@ export function MCPConfigForm({ showSpreadsheet, setShowSpreadsheet }: { showSpr
               />
             </svg>
             <h1 className="text-3xl sm:text-5xl font-semibold">
-              Open MCP Client
+              Intacct Copilot Orchestration
             </h1>
           </div>
         </div>
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-4 gap-4">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3">
             <p className="text-sm text-gray-600">
-              Manage and configure your MCP servers
             </p>
-            <div className="flex items-center gap-4">
-              <a
-                href="https://github.com/CopilotKit/mcp-client-langgraph"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-blue-600 hover:text-blue-800 flex items-center"
-              >
-                <span className="mr-1">GitHub Repo</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-3.5 w-3.5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://docs.copilotkit.ai/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-blue-600 hover:text-blue-800 flex items-center"
-              >
-                <span className="mr-1">Documentation</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-3.5 w-3.5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-              </a>
-            </div>
           </div>
           <div className="flex gap-2">
             <button
               onClick={() => setShowSpreadsheet(!showSpreadsheet)}
               className="w-full sm:w-auto px-3 py-1.5 bg-gray-800 text-white rounded-md text-sm font-medium hover:bg-gray-700 flex items-center gap-1 justify-center"
             >
-              {showSpreadsheet ? 'Hide Spreadsheet' : 'Show Spreadsheet'}
-            </button>
-            <button
-              onClick={() => setShowAddServerForm(true)}
-              className="w-full sm:w-auto px-3 py-1.5 bg-gray-800 text-white rounded-md text-sm font-medium hover:bg-gray-700 flex items-center gap-1 justify-center"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 4v16m8-8H4"
-                />
-              </svg>
-              Add Server
-            </button>
-          </div>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+            Add Skill
+          </button>
         </div>
       </div>
 
       {/* Server Statistics */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
         <div className="bg-white border rounded-md p-4">
-          <div className="text-sm text-gray-500">Total Servers</div>
+          <div className="text-sm text-gray-500">Total Skills</div>
           <div className="text-3xl font-bold">{totalServers}</div>
         </div>
         <div className="bg-white border rounded-md p-4">
-          <div className="text-sm text-gray-500">Stdio Servers</div>
+          <div className="text-sm text-gray-500">Stdio Skills</div>
           <div className="text-3xl font-bold">{stdioServers}</div>
         </div>
         <div className="bg-white border rounded-md p-4">
-          <div className="text-sm text-gray-500">SSE Servers</div>
+          <div className="text-sm text-gray-500">SSE Skills</div>
           <div className="text-3xl font-bold">{sseServers}</div>
         </div>
       </div>
@@ -311,11 +269,11 @@ export function MCPConfigForm({ showSpreadsheet, setShowSpreadsheet }: { showSpr
 
       {/* Server List */}
       <div className="bg-white border rounded-md p-6">
-        <h2 className="text-lg font-semibold mb-4">Server List</h2>
+        <h2 className="text-lg font-semibold mb-4">Skill List</h2>
 
         {totalServers === 0 ? (
           <div className="text-gray-500 text-center py-10">
-            No servers configured. Click &quot;Add Server&quot; to get started.
+            No skills configured. Click &quot;Add Skill&quot; to get started.
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -363,25 +321,48 @@ export function MCPConfigForm({ showSpreadsheet, setShowSpreadsheet }: { showSpr
                         {config.transport}
                       </div>
                     </div>
-                    <button
-                      onClick={() => removeConfig(name)}
-                      className="text-gray-400 hover:text-red-500"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-4 h-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => {
+                          const updatedConfig = {
+                            ...config,
+                            enabled: !config.enabled
+                          };
+                          setConfigs({
+                            ...configs,
+                            [name]: updatedConfig
+                          });
+                        }}
+                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 ${
+                          config.enabled ? 'bg-gray-800' : 'bg-gray-200'
+                        }`}
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                        <span
+                          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                            config.enabled ? 'translate-x-6' : 'translate-x-1'
+                          }`}
                         />
-                      </svg>
-                    </button>
+                      </button>
+                      <button
+                        onClick={() => removeConfig(name)}
+                        className="text-gray-400 hover:text-red-500"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-4 h-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                          />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                   <div className="mt-3 text-sm text-gray-600">
                     {config.transport === "stdio" ? (
@@ -400,30 +381,92 @@ export function MCPConfigForm({ showSpreadsheet, setShowSpreadsheet }: { showSpr
             ))}
           </div>
         )}
+      </div>
 
-        {/* Composio & mcp.run reference */}
-        <div className="mt-10 pt-4 border-t text-center text-sm text-gray-500">
-          More MCP servers available on the web, e.g.{" "}
-          <a
-            href="https://mcp.composio.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-700 hover:text-gray-900 inline-flex items-center mr-2"
+      {/* Import/Export Buttons */}
+      <div className="flex gap-2 justify-end mt-4">
+        <button
+          onClick={() => { setPromptDraft(systemPrompt); setShowPromptModal(true); }}
+          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium flex items-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-4 h-4 mr-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-            mcp.composio.dev
-            <ExternalLink />
-          </a>
-          and{" "}
-          <a
-            href="https://www.mcp.run/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-700 hover:text-gray-900 inline-flex items-center"
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 4v16m8-8H4"
+            />
+          </svg>
+          System Prompt
+        </button>
+        <button
+          onClick={async () => {
+            try {
+              await navigator.clipboard.writeText(
+                JSON.stringify(configs, null, 2)
+              );
+              alert("Exported MCP Servers to clipboard as JSON.");
+            } catch (err) {
+              alert("Failed to export to clipboard: " + err);
+            }
+          }}
+          className="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 text-sm font-medium flex items-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-4 h-4 mr-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-            mcp.run
-            <ExternalLink />
-          </a>
-        </div>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M8 17l4 4 4-4m-4-5v9"
+            />
+          </svg>
+          Export
+        </button>
+        <button
+          onClick={async () => {
+            try {
+              const text = await navigator.clipboard.readText();
+              const json = JSON.parse(text);
+              if (typeof json === "object" && json !== null) {
+                setConfigs(json);
+                alert("Imported MCP Servers from clipboard.");
+              } else {
+                alert("Clipboard does not contain a valid MCP Servers JSON config.");
+              }
+            } catch (err) {
+              alert("Failed to import from clipboard: " + err);
+            }
+          }}
+          className="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 text-sm font-medium flex items-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-4 h-4 mr-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 4v16m8-8H4"
+            />
+          </svg>
+          Import
+        </button>
       </div>
 
       {/* Add Server Modal */}
@@ -446,7 +489,7 @@ export function MCPConfigForm({ showSpreadsheet, setShowSpreadsheet }: { showSpr
                     d="M12 4v16m8-8H4"
                   />
                 </svg>
-                Add New Server
+                Add New Skill
               </h2>
               <button
                 onClick={() => setShowAddServerForm(false)}
@@ -472,7 +515,7 @@ export function MCPConfigForm({ showSpreadsheet, setShowSpreadsheet }: { showSpr
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-1">
-                  Server Name
+                  Skill Name
                 </label>
                 <input
                   type="text"
@@ -620,10 +663,45 @@ export function MCPConfigForm({ showSpreadsheet, setShowSpreadsheet }: { showSpr
                       d="M12 4v16m8-8H4"
                     />
                   </svg>
-                  Add Server
+                  Add Skill
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {showPromptModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl relative">
+            <h2 className="text-lg font-semibold mb-2">Edit System Prompt</h2>
+            <textarea
+              className="w-full h-48 border rounded-md p-2 text-sm mb-4"
+              value={promptDraft}
+              onChange={e => setPromptDraft(e.target.value)}
+            />
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => setShowPromptModal(false)}
+                className="px-4 py-2 border text-gray-700 rounded-md hover:bg-gray-50 text-sm font-medium"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => { setSystemPrompt(promptDraft); setShowPromptModal(false); }}
+                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium"
+              >
+                Save
+              </button>
+            </div>
+            <button
+              onClick={() => setShowPromptModal(false)}
+              className="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
         </div>
       )}
