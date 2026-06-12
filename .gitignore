@@ -62,3 +62,5 @@ agent/src/main/resources/intacct_token.properties
 
 # junie
 .junie/
+
+.omo/
